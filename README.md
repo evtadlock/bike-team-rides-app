@@ -1,22 +1,98 @@
 # Bike Team Rides App
 
-A Shiny for Python application for managing Bike MS training rides, registrations, team rosters, and email notifications.
+A Shiny for Python application for managing Bike MS training rides, registrations, team rosters, and notifications.
+
+This app was developed to support Team Ugly training rides leading up to Bike MS events.
+
+---
 
 ## Overview
 
-This application provides a lightweight ride management system for cycling teams participating in Bike MS events. It supports ride creation, rider signups, cancellation via confirmation codes, roster viewing, and optional team notification workflows.
+The application provides a centralized system where riders can:
 
-The application uses a SQLite backend and automatically initializes its database on first run.
+- View scheduled training rides
+- Sign up for rides
+- Cancel their registration
+- View ride rosters
 
-## Features
+Admins can create, notify, and manage rides through a password-protected panel.
 
-- Create and manage training rides
-- Rider registration with unique confirmation code
-- Cancel registration using confirmation number
-- View roster by ride and date
-- Admin-protected ride creation and deletion
-- Email notification preparation for team mailing list
-- Automatic database and table creation
+The application uses a SQLite backend that initializes automatically on first run.
+
+---
+
+## Rider Instructions
+
+### 1. Signing Up for a Ride
+
+1. Open the application link provided by the team.
+2. Navigate to the **Sign Up** tab.
+3. Select a ride from the ride list.
+4. Enter your full name.
+5. Click **Sign Up**.
+
+After registering, you will receive a confirmation number.
+
+Save this number. It is required if you need to cancel your spot.
+
+---
+
+### 2. Cancelling a Ride Registration
+
+1. Go to the **Cancel Registration** tab.
+2. Enter your confirmation number.
+3. Click **Cancel My Spot**.
+
+If the code is valid, your registration will be removed.
+
+---
+
+### 3. Viewing the Ride Roster
+
+1. Navigate to the **Roster** tab.
+2. View riders signed up by ride and date.
+
+---
+
+## Admin Instructions
+
+Admin access is password protected.
+
+### Creating a Ride
+
+1. Open the **Admin** tab.
+2. Enter the admin password.
+3. Complete the ride form:
+   - Ride Name
+   - Date
+   - Start Time
+   - Meeting Point
+   - GPS Route Link
+4. Click **Create Ride**.
+
+---
+
+### Notifying the Team
+
+1. Select a ride in the notification section.
+2. Click **Prepare Notification**.
+3. Choose:
+   - Gmail
+   - Email App
+   - Copy Email List
+
+This feature requires a `contacts.csv` mailing list file.
+
+---
+
+### Deleting a Ride
+
+1. Select a ride from the delete dropdown.
+2. Click **Delete Ride**.
+
+This removes both the ride and associated signups.
+
+---
 
 ## Technology Stack
 
@@ -25,18 +101,9 @@ The application uses a SQLite backend and automatically initializes its database
 - SQLite
 - Pandas
 
-## Project Structure
+---
 
-```
-app.py              Main Shiny application
-database.py         Database connection and CRUD logic
-requirements.txt    Python dependencies
-schema.sql          Database schema (optional reference)
-team_photo.png      UI image asset
-.gitignore          Prevents private files from being committed
-```
-
-## Installation
+## Installation (Developers)
 
 Clone the repository:
 
@@ -57,23 +124,35 @@ Run the application:
 shiny run app.py
 ```
 
-The database file will be created automatically inside a local `data/` directory.
+The database will be created automatically in a local `data/` directory.
 
-## Configuration
+---
 
-The admin password is defined in the application. For production use, it is recommended to move this to an environment variable.
+## Optional Mailing List File
 
-The optional mailing list feature looks for a file named:
+To enable notifications, add a file named:
 
 ```
 contacts.csv
 ```
 
-If this file is not present, the notification feature will be disabled automatically.
+Example format:
+
+```
+First Name,Email
+Jane,jane@example.com
+John,john@example.com
+```
+
+This file is excluded from version control for privacy reasons.
+
+---
 
 ## Privacy Notice
 
-This repository does not contain any real rider data, mailing lists, or database files. The SQLite database and contact files are intentionally excluded from version control.
+This repository does not contain real rider data, mailing lists, or database files. All personal data is excluded from version control.
+
+---
 
 ## Author
 
