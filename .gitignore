@@ -1,0 +1,8 @@
+contacts.csv
+*.db
+*.sqlite
+data/
+__pycache__/
+rsconnect-python/
+.env
+.DS_Store
